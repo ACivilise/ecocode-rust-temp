@@ -6,8 +6,3 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-
-[workspace.metadata.dylint]
-libraries = [
-    { git = "https://github.com/trailofbits/dylint", pattern = "examples/restriction/const_path_join" },
-]

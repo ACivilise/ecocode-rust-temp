@@ -38,8 +38,8 @@ services:
     depends_on:
       - sonarqube
     volumes:
-      - ./sonar-project.properties:/sonar-project.properties
-      - ./src:/usr/src
+      - ./../sonar-project.properties:/sonar-project.properties
+      - ./../ecocode-rust-test/src:/usr/src
     entrypoint: |
       /bin/bash -c "
       while ! nc -z sonarqube 9000; do
