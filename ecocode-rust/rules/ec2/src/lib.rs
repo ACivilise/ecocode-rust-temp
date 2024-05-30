@@ -20,9 +20,9 @@ extern crate rustc_span;
 extern crate rustc_target;
 extern crate rustc_trait_selection;
 
-use rustc_hir::{Expr, ExprKind, Block, Stmt, StmtKind};
-use rustc_lint::{LateContext, LateLintPass};
 use clippy_utils::diagnostics::span_lint_and_help;
+use rustc_hir::{Block, Expr, ExprKind, Stmt, StmtKind};
+use rustc_lint::{LateContext, LateLintPass};
 
 dylint_linting::declare_late_lint! {
     /// ### What it does
@@ -46,7 +46,6 @@ dylint_linting::declare_late_lint! {
 }
 
 impl<'tcx> LateLintPass<'tcx> for Ec2 {
-
     fn check_block(&mut self, cx: &LateContext<'tcx>, block: &'tcx Block<'tcx>) {
         for stmt in block.stmts {
             self.check_stmt(cx, stmt);
@@ -58,35 +57,33 @@ impl<'tcx> LateLintPass<'tcx> for Ec2 {
             self.check_expr(cx, expr);
         }
     }
-    
+
     fn check_expr(&mut self, cx: &LateContext<'tcx>, expr: &'tcx Expr<'tcx>) {
         if let ExprKind::If(_, _, Some(else_expr)) = &expr.kind {
-            if self.is_nested_if_else(else_expr) {
+            if is_nested_if_else(else_expr) {
                 span_lint_and_help(
                     cx,
                     EC2,
                     expr.span,
                     "ECOCODE : Avoid multiple if-else statements",
                     None,
-                    "Consider refactoring to a match statement or another construct"
+                    "Consider refactoring to a match statement or another construct",
                 );
             }
         }
     }
 }
 
-impl<'tcx> Ec2 {
-    fn is_nested_if_else(&self, expr: &'tcx Expr<'tcx>) -> bool {
-        match expr.kind {
-            ExprKind::If(_, _, Some(else_expr)) => {
-                if let ExprKind::If(_, _, _) = else_expr.kind {
-                    true
-                } else {
-                    self.is_nested_if_else(else_expr)
-                }
-            },
-            _ => false,
+fn is_nested_if_else(expr: &Expr) -> bool {
+    match expr.kind {
+        ExprKind::If(_, _, Some(else_expr)) => {
+            if let ExprKind::If(_, _, _) = else_expr.kind {
+                true
+            } else {
+                is_nested_if_else(else_expr)
+            }
         }
+        _ => false,
     }
 }
 
