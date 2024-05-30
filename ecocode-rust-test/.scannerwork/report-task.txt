@@ -1,0 +1,6 @@
+projectKey=rust-ecocode
+serverUrl=http://localhost:9000
+serverVersion=10.5.1.90531
+dashboardUrl=http://localhost:9000/dashboard?id=rust-ecocode
+ceTaskId=c8071d2b-34dd-440b-b3d9-20d2bd491378
+ceTaskUrl=http://localhost:9000/api/ce/task?id=c8071d2b-34dd-440b-b3d9-20d2bd491378
