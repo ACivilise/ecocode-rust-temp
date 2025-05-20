@@ -1,0 +1,5 @@
+[build]
+rustflags = ["--cfg", "dylint_lib=\"ec2\""]
+
+[dylint]
+libraries = ["../ecocode-rust/rules/ec2"]

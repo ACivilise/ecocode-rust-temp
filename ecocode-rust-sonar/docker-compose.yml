@@ -1,8 +1,6 @@
-version: '3.8'
-
 services:
   sonarqube:
-    image: sonarqube:latest
+    image: sonarqube:10.7.0-community
     container_name: sonarqube
     ports:
       - "9000:9000"
@@ -11,14 +9,15 @@ services:
       - SONARQUBE_JDBC_USERNAME=sonar
       - SONARQUBE_JDBC_PASSWORD=sonar
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     volumes:
-      - ./sonarqube_data:/opt/sonarqube/data
-      - ./sonarqube_logs:/opt/sonarqube/logs
-      - ./sonarqube_extensions:/opt/sonarqube/extensions/plugins
+      - sonarqube_data:/opt/sonarqube/data
+      - sonarqube_logs:/opt/sonarqube/logs
+      - sonarqube_extensions:/opt/sonarqube/extensions/plugins
     networks:
       - default
-      - host_network
+    restart: unless-stopped
 
   db:
     image: postgres:13
@@ -31,23 +30,32 @@ services:
       - postgres_data:/var/lib/postgresql/data
     networks:
       - default
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U sonar"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   sonar-scanner:
     image: sonarsource/sonar-scanner-cli
     container_name: sonar_scanner
-    depends_on:
-      - sonarqube
     volumes:
-      - ./../sonar-project.properties:/sonar-project.properties
-      - ./../ecocode-rust-test/src:/usr/src
-    entrypoint: |
-      /bin/bash -c "
-      while ! nc -z sonarqube 9000; do
-        sleep 1;
-      done;
-      sonar-scanner"
+      - ../ecocode-rust-test:/usr/src
     networks:
       - default
+    depends_on:
+      - sonarqube
+    entrypoint: |
+      /bin/bash -c "
+      echo 'Listing files in /usr/src before running sonar-scanner:';
+      ls -al /usr/src;
+      echo 'Displaying content of sonar-project.properties:';
+      cat /usr/src/sonar-project.properties;
+      while ! nc -z sonarqube 9000; do
+        echo 'Waiting for SonarQube to be available...';
+        sleep 5;
+      done;
+      sonar-scanner -Dsonar.projectBaseDir=/usr/src"
 
 volumes:
   sonarqube_data:
@@ -56,5 +64,4 @@ volumes:
   postgres_data:
 
 networks:
-  host_network:
-    external: true
+  default:

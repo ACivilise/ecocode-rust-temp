@@ -1,10 +1,3 @@
-
-# Création du network docker
-
-```bash
-docker network create host_network
-```
-
 # lancement des containers
 
 ```bash
@@ -44,8 +37,7 @@ community.rust.clippy.reportPaths=./target/clippy-report.json
 # lancement de l'analyse
 
 ```bash
-cargo clippy --message-format=json &> <CLIPPY REPORT FILE>
-cargo clippy --message-format=json *> <CLIPPY REPORT FILE>
+cargo clippy --message-format=json &> ./target/clippy-report.json
 ```
 
 Ensuite aller dans le container sonar-scanner et lancer la commande 

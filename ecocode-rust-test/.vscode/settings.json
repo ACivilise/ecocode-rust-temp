@@ -3,7 +3,7 @@
         "cargo",
         "dylint",
         "--path",
-        "../ecocode-rust/rules/test/temp",
+        "../ecocode-rust/rules/ec2",
         "--message-format=json"
     ]
 }
