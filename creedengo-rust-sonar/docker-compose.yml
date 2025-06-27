@@ -14,7 +14,7 @@ services:
     volumes:
       - sonarqube_data:/opt/sonarqube/data
       - sonarqube_logs:/opt/sonarqube/logs
-      - sonarqube_extensions:/opt/sonarqube/extensions/plugins
+      - ./sonarqube_extensions:/opt/sonarqube/extensions/plugins
     networks:
       - default
     restart: unless-stopped
@@ -40,7 +40,7 @@ services:
     image: sonarsource/sonar-scanner-cli
     container_name: sonar_scanner
     volumes:
-      - ../ecocode-rust-test:/usr/src
+      - ../creedengo-rust-test:/usr/src
     networks:
       - default
     depends_on:

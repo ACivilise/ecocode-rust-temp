@@ -2,11 +2,10 @@ target
 .scannerwork
 **/target
 **/.scannerwork
-sonar-project.properties
 sonar_lint_messages.json
 
-ecocode-rust-sonar/sonarqube_logs/*
-ecocode-rust-sonar/sonarqube_data/*
+creedengo-rust-sonar/sonarqube_logs/*
+creedengo-rust-sonar/sonarqube_data/*
 
-!ecocode-rust-sonar/sonarqube_logs/create.me
-!ecocode-rust-sonar/sonarqube_data/create.me
+!creedengo-rust-sonar/sonarqube_logs/create.me
+!creedengo-rust-sonar/sonarqube_data/create.me

@@ -1,0 +1,19 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Build GCI2 rule and run linting",
+			"type": "shell",
+			"command": "powershell",
+			"args": [
+				"-Command",
+				"cd './creedengo-rust'; cargo build --release; cd '../creedengo-rust-test'; cargo dylint --path ../creedengo-rust"
+			],
+			"group": "build",
+			"problemMatcher": [
+				"$rustc"
+			],
+			"isBackground": false
+		}
+	]
+}

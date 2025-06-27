@@ -1,9 +1,0 @@
-{
-    "rust-analyzer.checkOnSave.overrideCommand": [
-        "cargo",
-        "dylint",
-        "--path",
-        "../ecocode-rust/rules/ec2",
-        "--message-format=json"
-    ]
-}

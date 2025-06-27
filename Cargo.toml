@@ -1,0 +1,8 @@
+[workspace]
+members = ["creedengo-rust", "creedengo-rust-test"]
+resolver = "2"
+
+[workspace.dependencies]
+dylint_linting = "3.2.3"
+clippy_utils = "0.1.83"
+if_chain = "1.0.2"

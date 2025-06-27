@@ -1,0 +1,90 @@
+warning: found 3 chained if-else statements
+  --> $DIR/gci2.rs:2:5
+   |
+LL | /     if x == 1 {
+LL | |         "one".to_string()
+LL | |     } else if x == 2 {
+LL | |         "two".to_string()
+...  |
+LL | |         "other".to_string()
+LL | |     }
+   | |_____^
+   |
+   = help: consider using pattern matching (match) or lookup tables to improve energy efficiency
+   = note: `#[warn(gci2)]` on by default
+
+warning: found 5 chained if-else statements
+  --> $DIR/gci2.rs:14:5
+   |
+LL | /     if x == 1 {
+LL | |         "one".to_string()
+LL | |     } else if x == 2 {
+LL | |         "two".to_string()
+...  |
+LL | |         "other".to_string()
+LL | |     }
+   | |_____^
+   |
+   = help: consider using pattern matching (match) or lookup tables to improve energy efficiency
+
+warning: found 4 chained if-else statements
+  --> $DIR/gci2.rs:16:12
+   |
+LL |       } else if x == 2 {
+   |  ____________^
+LL | |         "two".to_string()
+LL | |     } else if x == 3 {
+LL | |         "three".to_string()
+...  |
+LL | |         "other".to_string()
+LL | |     }
+   | |_____^
+   |
+   = help: consider using pattern matching (match) or lookup tables to improve energy efficiency
+
+warning: found 3 chained if-else statements
+  --> $DIR/gci2.rs:18:12
+   |
+LL |       } else if x == 3 {
+   |  ____________^
+LL | |         "three".to_string()
+LL | |     } else if x == 4 {
+LL | |         "four".to_string()
+...  |
+LL | |         "other".to_string()
+LL | |     }
+   | |_____^
+   |
+   = help: consider using pattern matching (match) or lookup tables to improve energy efficiency
+
+warning: found 4 chained if-else statements
+  --> $DIR/gci2.rs:30:5
+   |
+LL | /     if code == 200 {
+LL | |         "OK"
+LL | |     } else if code == 404 {
+LL | |         "Not Found"
+...  |
+LL | |         "Unknown"
+LL | |     }
+   | |_____^
+   |
+   = help: consider using pattern matching (match) or lookup tables to improve energy efficiency
+
+warning: found 3 chained if-else statements
+  --> $DIR/gci2.rs:32:12
+   |
+LL |       } else if code == 404 {
+   |  ____________^
+LL | |         "Not Found"
+LL | |     } else if code == 500 {
+LL | |         "Internal Server Error"
+...  |
+LL | |         "Unknown"
+LL | |     }
+   | |_____^
+   |
+   = help: consider using pattern matching (match) or lookup tables to improve energy efficiency
+
+warning: 6 warnings emitted
+

@@ -1,6 +1,6 @@
 [![EcoCode on NuGet](https://img.shields.io/nuget/v/EcoCode.svg)](https://www.nuget.org/packages/EcoCode/) [![EcoCode on NuGet](https://img.shields.io/nuget/dt/EcoCode)](https://www.nuget.org/packages/EcoCode/)
 
-EcoCode-Rust
+creedengo-rust
 
 _ecoCode_ is a collective project aiming to reduce environmental footprint of software at the code level. The goal of the project is to provide a list of static code analyzers to highlight code structures that may have a negative ecological impact: energy and resources over-consumption, "fatware", shortening terminals' lifespan, etc.
 
@@ -20,14 +20,17 @@ This set of [Clippy](https://github.com/rust-lang/rust-clippy) linters implement
 🧩 Compatibility
 -----------------
  
-🚧 TODO 🚧
+This project requires:
+- Rust nightly toolchain (for dylint development)
+- cargo-dylint and dylint-link tools
+- VS Code with rust-analyzer extension (for IDE integration)
 
 🌿 Rules
 -------------------
 
 |Id|Description|Severity|Enabled|
-|--|-----------|:------:|:--------:|:------:|
-|[EC2](https://github.com/green-code-initiative/ecoCode/blob/main/ecocode-rules-specifications/src/main/rules/EC2/EC2.json)|Avoid multiple if-else statement|⚠️|❌|
+|--|-----------|:------:|:--------:|
+|[GCI2](https://github.com/green-code-initiative/creedengo-rules-specifications/blob/main/src/main/rules/GCI2/GCI2.json)|Avoid multiple if-else statement|⚠️|✅|
 
 🤝 Contribution
 ---------------
